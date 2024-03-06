@@ -1,0 +1,40 @@
+<div class="vertical-navbar">
+  <a routerLink="/dashBoard">Dashboard</a>
+  <a routerLink="/orderDashBoard">Orders</a>
+</div>
+<div>
+    <div class="order-container">
+        <h2>Create Order</h2>
+    <form (ngSubmit)="submitOrder()" [formGroup]="orderForm">
+        <div class="form-group">
+          <label for="itemName">Item Name:</label>
+          <input type="text" id="itemName" name="firstName" formControlName="itemName" />
+          <div style="color: red" *ngIf="itemName?.hasError('required') && (itemName?.dirty || itemName?.touched)">
+            Item Name is required.
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <input type="number" id="price" name="price" formControlName="price" />
+          <div style="color: red" *ngIf="price?.hasError('required') && (price?.dirty || price?.touched)">
+            Price is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" formControlName="quantity" />
+            <div style="color: red" *ngIf="quantity?.hasError('required') && (quantity?.dirty || quantity?.touched)">
+              Quantity is required.
+            </div>
+        </div>  
+      
+        <div class="button-container">
+          <button class="btn btn-sm btn-primary" type="submit" [disabled]="orderForm.invalid">Submit Order</button>&nbsp;
+          <button class="btn btn-sm btn-primary" type="button" (click)="clearForm()">Reset</button>&nbsp;
+          <button class="btn btn-sm btn-danger" type="button" routerLink="/orderDashBoard">Cancel</button>
+        </div>
+      
+    </form>
+  </div>

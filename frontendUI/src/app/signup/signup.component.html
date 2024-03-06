@@ -1,0 +1,158 @@
+<div class="signup-container">
+    <h2>Sign Up</h2>
+  
+    <form (ngSubmit)="signupFormSubmit()" [formGroup]="signupForm">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" formControlName="firstName" />
+        <div style="color: red" *ngIf="firstName?.hasError('required') && (firstName?.dirty || firstName?.touched)">
+          First Name is required.
+        </div>
+        <div style="color: red" *ngIf="signupForm.get('firstName')?.hasError('invalidName') && (signupForm.get('firstName')?.dirty || signupForm.get('firstName')?.touched)">
+          First Name Should not contain Special characters or Numbers
+        </div>
+        </div>
+  
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" formControlName="lastName" />
+        <div style="color: red" *ngIf="lastName?.hasError('required') && (lastName?.dirty || lastName?.touched)">
+          Last Name is required.
+        </div>
+        <div style="color: red" *ngIf="signupForm.get('lastName')?.hasError('invalidName') && (signupForm.get('lastName')?.dirty || signupForm.get('lastName')?.touched)">
+          Last Name Should not contain Special characters or Numbers
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="gender" value="M" formControlName="gender" />
+            Male
+          </label>
+          <label>
+            <input type="radio" name="gender" value="F" formControlName="gender" />
+            Female
+          </label>
+          <label>
+            <input type="radio" name="gender" value="O" formControlName="gender" />
+            Other
+          </label>
+        </div>
+        <div style="color: red" *ngIf="gender?.hasError('required') && (gender?.dirty || gender?.touched)">
+          Gender is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" formControlName="email" />
+        <div style="color: red" *ngIf="email?.hasError('required') && (email?.dirty || email?.touched)">
+          Email is required.
+        </div>
+        <div style="color: red" *ngIf="email?.hasError('email') && (email?.dirty || email?.touched)">
+          Enter a valid email address.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth" />
+        <div style="color: red" *ngIf="dateOfBirth?.hasError('required') && (dateOfBirth?.dirty || dateOfBirth?.touched)">
+          Date of Birth is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="mobileNumber">Mobile Number:</label>
+        <input
+            type="text"
+            id="mobileNumber"
+            formControlName="mobileNumber"
+            mask="0000000000"
+            placeholder="9000000000"
+            maxlength="10"/>
+            <div style="color: red" *ngIf="signupForm.get('mobileNumber')?.hasError('required') && (signupForm.get('mobileNumber')?.dirty || signupForm.get('mobileNumber')?.touched)">
+              Mobile Number is required.
+            </div>
+            <div style="color: red" *ngIf="signupForm.get('mobileNumber')?.hasError('pattern') && !signupForm.get('mobileNumber')?.hasError('required') && (signupForm.get('mobileNumber')?.dirty || signupForm.get('mobileNumber')?.touched)">
+              Enter a valid mobile number (numeric characters only).
+            </div>
+            <div style="color: red" *ngIf="signupForm.get('mobileNumber')?.hasError('invalidMobileNumberLength') && !signupForm.get('mobileNumber')?.hasError('required') && (signupForm.get('mobileNumber')?.dirty || signupForm.get('mobileNumber')?.touched)">
+              Mobile Number should be a 10-digit number.
+            </div> 
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" maxlength="15" formControlName="password" />
+        <div style="color: red" *ngIf="signupForm.get('password')?.hasError('required') && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
+          Password is required.
+        </div>
+        <div style="color: red" *ngIf="signupForm.get('password')?.hasError('invalidPassword') && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
+          Password should contain at least one alphabet, one number, one special character, with a length between 7 and 15 characters.
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" maxlength="15" formControlName="confirmPassword" />
+        <div style="color: red" *ngIf="signupForm.get('confirmPassword')?.hasError('required') && (signupForm.get('confirmPassword')?.dirty || signupForm.get('confirmPassword')?.touched)">
+          Confirm Password is required.
+        </div>
+        <div style="color: red" *ngIf="signupForm.hasError('passwordMismatch') && (signupForm.get('confirmPassword')?.dirty || signupForm.get('confirmPassword')?.touched)">
+          Passwords do not match.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="securityQuestion1">Security Question 1:</label>
+        <select id="securityQuestion1" name="securityQuestion1" formControlName="securityQuestion1">
+          <option value="q1">What is your favorite color?</option>
+          <option value="q2">What is the name of your first pet?</option>
+        </select>
+        <div style="color: red"  *ngIf="securityQuestion1?.hasError('required') && (securityQuestion1?.dirty || securityQuestion1?.touched)">
+          Security Question 1 is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="securityAnswer1">Security Answer 1:</label>
+        <input type="text" id="securityAnswer1" name="securityAnswer1" formControlName="securityAnswer1" />
+        <div style="color: red" *ngIf="securityAnswer1?.hasError('required') && (securityAnswer1?.dirty || securityAnswer1?.touched)">
+          Security Answer 1 is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="securityQuestion2">Security Question 2:</label>
+        <select id="securityQuestion2" name="securityQuestion2" formControlName="securityQuestion2">
+          <option value="q3">What is your favorite movie?</option>
+          <option value="q4">Where did you go for your first vacation?</option>
+        </select>
+        <div style="color: red" *ngIf="securityQuestion2?.hasError('required') && (securityQuestion2?.dirty || securityQuestion2?.touched)">
+          Security Question 2 is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="securityAnswer2">Security Answer 2:</label>
+        <input type="text" id="securityAnswer2" name="securityAnswer2" formControlName="securityAnswer2" />
+        <div style="color: red" *ngIf="securityAnswer2?.hasError('required') && (securityAnswer2?.dirty || securityAnswer2?.touched)">
+          Security Answer 2 is required.
+        </div>
+      </div>
+  
+      <div class="button-container">
+        <button class="btn btn-sm btn-primary" type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+        <button class="btn btn-sm btn-primary" type="button" (click)="resetForm()">Reset</button>
+        <button class="btn btn-sm btn-danger" type="button" routerLink="/login">Cancel</button>
+      </div>
+  
+      <div class="login-link">
+        <p>Already have an account? <a routerLink="/login">Login here</a></p>
+      </div>
+    </form>
+  </div>
+  

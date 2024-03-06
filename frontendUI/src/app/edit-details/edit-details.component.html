@@ -1,0 +1,77 @@
+<div class="edit-details-container">
+        <h2>Update Profile</h2>
+        <form (ngSubmit)="editOnSubmit()" [formGroup]="editForm">
+            <div class="form-group">
+              <label for="firstName">First Name:</label>
+              <input type="text" id="firstName" name="firstName" formControlName="firstName" />
+              <div style="color: red" *ngIf="firstName?.hasError('required') && (firstName?.dirty || firstName?.touched)">
+                First Name is required.
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" formControlName="lastName" />
+                <div style="color: red" *ngIf="lastName?.hasError('required') && (lastName?.dirty || lastName?.touched)">
+                  Last Name is required.
+                </div>
+              </div>
+          
+              <div class="form-group">
+                <label for="gender">Gender:</label>
+                <div class="radio-group">
+                  <label>
+                    <input type="radio" name="gender" value="M" formControlName="gender" />
+                    Male
+                  </label>
+                  <label>
+                    <input type="radio" name="gender" value="F" formControlName="gender" />
+                    Female
+                  </label>
+                  <label>
+                    <input type="radio" name="gender" value="O" formControlName="gender" />
+                    Other
+                  </label>
+                </div>
+                <div style="color: red" *ngIf="gender?.hasError('required') && (gender?.dirty || gender?.touched)">
+                  Gender is required.
+                </div>
+              </div>
+          
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" formControlName="email" />
+                <div style="color: red" *ngIf="email?.hasError('required') && (email?.dirty || email?.touched)">
+                  Email is required.
+                </div>
+                <div style="color: red" *ngIf="email?.hasError('email') && (email?.dirty || email?.touched)">
+                  Enter a valid email address.
+                </div>
+              </div>
+          
+              <div class="form-group">
+                <label for="dateOfBirth">Date of Birth:</label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth" />
+                <div style="color: red" *ngIf="dateOfBirth?.hasError('required') && (dateOfBirth?.dirty || dateOfBirth?.touched)">
+                  Date of Birth is required.
+                </div>
+              </div>
+        
+              <div class="form-group">
+                <label for="mobileNumber">Mobile Number:</label>
+                <input
+                    type="text"
+                    id="mobileNumber"
+                    formControlName="mobileNumber"
+                    mask="0000000000"
+                    placeholder="9000000000"
+                    maxlength="10"/>
+                <div style="color: red" *ngIf="mobileNumber?.hasError('required') && (mobileNumber?.dirty || mobileNumber?.touched)">
+                  Mobile Number is required.
+                </div>
+              </div>
+              <div class="button-container">
+                <button class="btn btn-sm btn-primary" type="submit" (click)="editOnSubmit">Update</button>
+                <button class="btn btn-sm btn-danger" type="button" routerLink="/dashBoard">Cancel</button>
+              </div>
+        </form>
+    </div>
