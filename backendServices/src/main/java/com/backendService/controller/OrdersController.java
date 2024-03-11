@@ -53,7 +53,6 @@ public class OrdersController {
 		Orders response = orderService.createOrder(order, cookie);
 		logger.info("createNewOrders API is called and response is : {}", new Gson().toJson(response));
 		return ResponseEntity.ok(response);
-
 	}
 	
 	@PutMapping("/updateOrder/{orderId}")
@@ -61,7 +60,6 @@ public class OrdersController {
 		Orders response = orderService.UpdateOrders(order, orderId);
 		logger.info("updateOrders API is called and response is : {}", new Gson().toJson(response));
 		return ResponseEntity.ok(response);
-
 	}
 	
 	
